@@ -1,18 +1,19 @@
 defmodule Cards do
   @moduledoc """
-  Documentation for `Cards`.
+  Provides a set of methods for creating and handling a deck of cards.
   """
 
   @doc """
-  Create deck.
+  Create a deck of cards.
 
   ## Examples
 
-  iex> Cards.create_deck()
-  ["Ace Spades", "Ace Clubs", "Ace Hearts", "Ace Diamonds", "Two Spades",
-  "Two Clubs", "Two Hearts", "Two Diamonds", "Three Spades", "Three Clubs",
-  "Three Hearts", "Three Diamonds", "Four Spades", "Four Clubs", "Four Hearts",
-  "Four Diamonds", "Five Spades", "Five Clubs", "Five Hearts", "Five Diamonds"]
+
+        iex> Cards.create_deck()
+        ["Ace Spades", "Ace Clubs", "Ace Hearts", "Ace Diamonds", "Two Spades",
+        "Two Clubs", "Two Hearts", "Two Diamonds", "Three Spades", "Three Clubs",
+        "Three Hearts", "Three Diamonds", "Four Spades", "Four Clubs", "Four Hearts",
+        "Four Diamonds", "Five Spades", "Five Clubs", "Five Hearts", "Five Diamonds"]
 
   """
 
@@ -38,12 +39,13 @@ defmodule Cards do
   end
 
   @doc """
-  shuffle a list
+  shuffle a deck of cards
 
   ## Examples
 
-  iex> Cards.shuffle(["Ace", "Two", "Three"])
-  [ "Two", "Three", "Ace"]
+
+        iex> Cards.shuffle(["Ace", "Two", "Three"])
+        [ "Two", "Three", "Ace"]
 
   """
   def shuffle(deck) do
@@ -51,15 +53,15 @@ defmodule Cards do
   end
 
   @doc """
-  checks if a card is contained in a deck/list of card
+  checks if a card is contained in a deck/list of cards
 
   ## Examples
 
-  iex Cards.contains(["Ace", "Two", "Three"], "Three")
-  true
 
-  iex> Cards.contains(["Ace", "Two", "Three"], "Fivr")
-  false
+        iex> Cards.contains(["Ace", "Two", "Three"], "Three")
+        true
+        iex> Cards.contains(["Ace", "Two", "Three"], "Five")
+        false
 
   """
 
@@ -68,14 +70,15 @@ defmodule Cards do
   end
 
   @doc """
-  deal a hand of cards for players
+  deal a hand of cards for a player
 
   ## Examples
 
-  iex> Cards.deal(["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds",
-  "Two of Spades"], 2)
-  ["Ace of Spades", "Ace of Clubs"], ["Ace of Hearts", "Ace of Diamonds",
-  "Two of Spades"]
+
+        iex> Cards.deal(["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds",
+        "Two of Spades"], 2)
+        ["Ace of Spades", "Ace of Clubs"], ["Ace of Hearts", "Ace of Diamonds",
+        "Two of Spades"]
 
   """
 
@@ -84,13 +87,14 @@ defmodule Cards do
   end
 
   @doc """
-  save a deck of card in a file on the local machine
+  save a deck of cards in a file on the local machine
 
   #Examples
 
-  iex> Cards.save(["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds",
-  "Two of Spades"], "file")
-  :ok
+
+        iex> Cards.save(["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds",
+        "Two of Spades"], "file")
+        :ok
 
   """
   def save(deck, filename) do
@@ -99,13 +103,14 @@ defmodule Cards do
   end
 
   @doc """
-  retrieve a saved deck of card saved on the local machine
+  retrieve a saved deck of cards that is saved on the local machine
 
   #Examples
 
-  iex> Cards.load("file")
-  ["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds",
-  "Two of Spades"]
+
+        iex> Cards.load("file")
+        ["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds",
+        "Two of Spades"]
 
   """
   def load(filename) do
@@ -141,13 +146,14 @@ defmodule Cards do
   end
 
   @doc """
-  Create a deck, shuffle the deck and deal
+  Create a deck, shuffle the deck and deal a hand
 
   ## Examples
 
-  create_hand(hand_size)
-  iex> ["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds",
-  "Two of Spades"]
+
+        create_hand(hand_size)
+        iex> ["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds",
+        "Two of Spades"]
 
   """
 
