@@ -17,4 +17,18 @@ defmodule CardsTest do
     assert length(deck) == length(shuffled_deck)
     refute deck == shuffled_deck
   end
+
+  test "Cards.contains returns true for a card in the deck and false for a card not in the deck" do
+    deck = Cards.create_deck()
+    assert Cards.contains?(deck, "Four of Clubs") == true
+    assert Cards.contains?(deck, "King of Clubs") == false
+  end
+
+  test "Cards.deal deals the corrrect hand size of cards" do
+    hand_size = 4
+    deck = Cards.create_deck()
+    {deal, rest_of_deck} = Cards.deal(deck, hand_size)
+    assert length(deal) == hand_size
+    assert length(rest_of_deck) === length(deck) - hand_size
+  end
 end
