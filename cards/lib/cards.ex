@@ -10,10 +10,11 @@ defmodule Cards do
 
 
         iex> Cards.create_deck()
-        ["Ace Spades", "Ace Clubs", "Ace Hearts", "Ace Diamonds", "Two Spades",
-        "Two Clubs", "Two Hearts", "Two Diamonds", "Three Spades", "Three Clubs",
-        "Three Hearts", "Three Diamonds", "Four Spades", "Four Clubs", "Four Hearts",
-        "Four Diamonds", "Five Spades", "Five Clubs", "Five Hearts", "Five Diamonds"]
+        ["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds",
+        "Two of Spades", "Two of Clubs", "Two of Hearts", "Two of Diamonds",
+        "Three of Spades", "Three of Clubs", "Three of Hearts", "Three of Diamonds",
+        "Four of Spades", "Four of Clubs", "Four of Hearts", "Four of Diamonds",
+        "Five of Spades", "Five of Clubs", "Five of Hearts", "Five of Diamonds"]
 
   """
 
@@ -44,8 +45,14 @@ defmodule Cards do
   ## Examples
 
 
-        iex> Cards.shuffle(["Ace", "Two", "Three"])
-        [ "Two", "Three", "Ace"]
+        iex> :rand.seed(:exsplus, {1, 2, 3})
+        iex> deck = Cards.create_deck
+        iex> Cards.shuffle(deck)
+        ["Five of Clubs", "Five of Spades", "Three of Spades", "Three of Hearts",
+        "Three of Clubs", "Two of Spades", "Five of Hearts", "Five of Diamonds",
+        "Four of Spades", "Two of Hearts", "Two of Clubs", "Four of Diamonds",
+        "Four of Clubs", "Ace of Clubs", "Ace of Spades", "Four of Hearts",
+        "Two of Diamonds", "Three of Diamonds", "Ace of Diamonds", "Ace of Hearts"]
 
   """
   def shuffle(deck) do
@@ -58,9 +65,10 @@ defmodule Cards do
   ## Examples
 
 
-        iex> Cards.contains(["Ace", "Two", "Three"], "Three")
+        iex> deck = Cards.create_deck
+        iex> Cards.contains?(deck, "Ace of Clubs")
         true
-        iex> Cards.contains(["Ace", "Two", "Three"], "Five")
+        iex> Cards.contains?(deck, "King of Diamonds")
         false
 
   """
@@ -75,10 +83,13 @@ defmodule Cards do
   ## Examples
 
 
-        iex> Cards.deal(["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds",
-        "Two of Spades"], 2)
-        ["Ace of Spades", "Ace of Clubs"], ["Ace of Hearts", "Ace of Diamonds",
-        "Two of Spades"]
+        iex> deck = Cards.create_deck
+        iex> Cards.deal(deck, 4)
+        {["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds"],
+        ["Two of Spades", "Two of Clubs", "Two of Hearts", "Two of Diamonds",
+         "Three of Spades", "Three of Clubs", "Three of Hearts", "Three of Diamonds",
+         "Four of Spades", "Four of Clubs", "Four of Hearts", "Four of Diamonds",
+         "Five of Spades", "Five of Clubs", "Five of Hearts", "Five of Diamonds"]}
 
   """
 
@@ -92,8 +103,7 @@ defmodule Cards do
   #Examples
 
 
-        iex> Cards.save(["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds",
-        "Two of Spades"], "file")
+        iex> Cards.save(["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds", "Two of Spades"], "file")
         :ok
 
   """
@@ -109,8 +119,7 @@ defmodule Cards do
 
 
         iex> Cards.load("file")
-        ["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds",
-        "Two of Spades"]
+        ["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds", "Two of Spades"]
 
   """
   def load(filename) do
@@ -150,10 +159,10 @@ defmodule Cards do
 
   ## Examples
 
-
-        create_hand(hand_size)
-        iex> ["Ace of Spades", "Ace of Clubs", "Ace of Hearts", "Ace of Diamonds",
-        "Two of Spades"]
+        iex> :rand.seed(:exsplus, {1, 2, 3})
+        iex> Cards.create_hand(5)
+        ["Five of Clubs", "Five of Spades", "Three of Spades", "Three of Hearts",
+        "Three of Clubs"]
 
   """
 
