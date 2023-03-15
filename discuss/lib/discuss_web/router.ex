@@ -2,30 +2,22 @@ defmodule DiscussWeb.Router do
   use DiscussWeb, :router
 
   pipeline :browser do
-    plug :accepts, ["html", "json"]
-    plug :fetch_session
-    plug :fetch_live_flash
-    plug :put_root_layout, {DiscussWeb.Layouts, :root}
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
+    plug(:accepts, ["html"])
+    plug(:fetch_session)
+    plug(:fetch_live_flash)
+    plug(:put_root_layout, {DiscussWeb.Layouts, :root})
+    plug(:protect_from_forgery)
+    plug(:put_secure_browser_headers)
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug(:accepts, ["json"])
   end
 
   scope "/", DiscussWeb do
-    pipe_through :browser
+    pipe_through(:browser)
 
-    get "/", PageController, :home
-
-    get "/about", PageController, :about
-  end
-
-  scope "/topics", DiscussWeb do
-    pipe_through :browser
-
-    get "/new", TopicController, :new
+    get("/", PageController, :home)
   end
 
   # Other scopes may use custom stacks.
@@ -43,10 +35,10 @@ defmodule DiscussWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/dev" do
-      pipe_through :browser
+      pipe_through(:browser)
 
-      live_dashboard "/dashboard", metrics: DiscussWeb.Telemetry
-      forward "/mailbox", Plug.Swoosh.MailboxPreview
+      live_dashboard("/dashboard", metrics: DiscussWeb.Telemetry)
+      forward("/mailbox", Plug.Swoosh.MailboxPreview)
     end
   end
 end
